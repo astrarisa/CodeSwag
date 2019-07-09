@@ -6,9 +6,9 @@ import com.astraris.coderswag.Model.Product
 object DataService {
     val categories = listOf(
         Category("SHORTS", "shirtimages"),
-        Category("HOODIES", "hoodieimage"),
-        Category("HATS", "hatimage"),
-        Category("DIGITAL", "digitalgoodsimage")
+        Category("HOODIES", "hoodieimages"),
+        Category("HATS", "hatimages"),
+        Category("DIGITAL", "digitalgoodsimages")
     )
 
     val hats = listOf(
