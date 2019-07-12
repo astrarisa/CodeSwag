@@ -22,21 +22,29 @@ class CategoryAdapter (context: Context, category: List<Category>) : BaseAdapter
     //convertView - View that is being displayed over and over
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val categoryView : View
+        val holder : ViewHolder
+
+        if (convertView == null){
+            categoryView = LayoutInflater.from(context).inflate(R.layout.category_list_item, null)
+            holder.categoryImage = categoryView.findViewById(R.id.categoryImage)
+            holder.categoryName = categoryView.findViewById(R.id.categoryName)
+
+            categoryView.tag = holder
+        }else{
+            holder = convertView.tag as ViewHolder
+            categoryView = convertView
+        }
 
         //LayoutInflater is an object that takes an XML layout(like in out layout folder) and
         //turns it into an actual view that we can use in code
-        categoryView = LayoutInflater.from(context).inflate(R.layout.category_list_item, null)
-        val categoryItem : ImageView = categoryView.findViewById(R.id.categoryImage)
-        val categoryName : TextView = categoryView.findViewById(R.id.categoryName)
+
 
         val category = category[position]
 
         //convert image name to resource id
         val recourceId = context.resources.getIdentifier(category.image, "drawable", context.packageName)
-        categoryItem.setImageResource(recourceId)
-        println(recourceId)
-
-        categoryName.text = category.title
+        holder.categoryImage?.setImageResource(recourceId)
+        holder.categoryName?.text = category.title
         return categoryView
 
     }
@@ -55,5 +63,12 @@ class CategoryAdapter (context: Context, category: List<Category>) : BaseAdapter
     //This function is telling the listView how many row is going to be displaying
     override fun getCount(): Int {
         return category.count() //returning the number of categories in categories array
+    }
+
+    //This viewholderis going to hold a reference to our category image and category name
+    private class ViewHolder{
+        var categoryImage : ImageView? = null
+        var categoryName : TextView? = null
+
     }
 }
