@@ -17,7 +17,7 @@ class CategoryAdapter (context: Context, category: List<Category>) : BaseAdapter
     val context = context
     val category = category
 
-    //Every adapter that inherits from this adapter needs to have 4 of the methods bolow
+    //Every adapter that inherits from this adapter needs to have 4 of the methods below
     //position - Number that corresponds to specific row that is being displayed
     //convertView - View that is being displayed over and over
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -26,6 +26,7 @@ class CategoryAdapter (context: Context, category: List<Category>) : BaseAdapter
 
         if (convertView == null){
             categoryView = LayoutInflater.from(context).inflate(R.layout.category_list_item, null)
+            holder = ViewHolder()
             holder.categoryImage = categoryView.findViewById(R.id.categoryImage)
             holder.categoryName = categoryView.findViewById(R.id.categoryName)
 
@@ -50,7 +51,7 @@ class CategoryAdapter (context: Context, category: List<Category>) : BaseAdapter
     }
 
     //This is the method that we call to retrieve(извелекать) the item that is associated(связан) with the position
-    //at that position that the listView is happend to be positioned to be at
+    //at that position that the listView is happened to be positioned to be at
     override fun getItem(position: Int): Any {
         return category[position]
     }
